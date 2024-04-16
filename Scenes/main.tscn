@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq1a20qup25gg"]
+
+[ext_resource type="PackedScene" uid="uid://b6rdtt2yakfn" path="res://Wall.tscn" id="1_4hrtt"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="TopWall" parent="Walls" instance=ExtResource("1_4hrtt")]
+position = Vector2(10, -600)
+rotation = 1.5708
+scale = Vector2(1, 9)
+
+[node name="BottomWall" parent="Walls" instance=ExtResource("1_4hrtt")]
+position = Vector2(10, 600)
+rotation = 1.5708
+scale = Vector2(1, 9)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.4, 0.4)
