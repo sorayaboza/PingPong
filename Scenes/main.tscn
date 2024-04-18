@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq1a20qup25gg"]
+[gd_scene load_steps=7 format=3 uid="uid://bq1a20qup25gg"]
 
-[ext_resource type="PackedScene" uid="uid://b6rdtt2yakfn" path="res://Wall.tscn" id="1_4hrtt"]
-[ext_resource type="PackedScene" uid="uid://c8mn7feh3grd6" path="res://Scenes/Paddles/Paddle.tscn" id="2_2ddi8"]
+[ext_resource type="PackedScene" uid="uid://b6rdtt2yakfn" path="res://Scenes/wall.tscn" id="1_4hrtt"]
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_bdrfs"]
+[ext_resource type="PackedScene" uid="uid://c8mn7feh3grd6" path="res://Scenes/Paddles/paddle.tscn" id="2_2ddi8"]
 [ext_resource type="Script" path="res://Scenes/Paddles/Enemy_Paddle.gd" id="3_4pwwt"]
+[ext_resource type="PackedScene" uid="uid://eogul4yb2g4t" path="res://Scenes/ball.tscn" id="4_xdrgm"]
+[ext_resource type="PackedScene" uid="uid://tf4wyenm6u7s" path="res://Scenes/edge.tscn" id="5_gev8n"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_bdrfs")
 
 [node name="Walls" type="Node" parent="."]
 
@@ -28,3 +32,14 @@ position = Vector2(-1000, 0)
 position = Vector2(1000, 0)
 rotation = -3.14159
 script = ExtResource("3_4pwwt")
+
+[node name="Ball" parent="." instance=ExtResource("4_xdrgm")]
+
+[node name="LeftEdge" parent="." instance=ExtResource("5_gev8n")]
+position = Vector2(-1137, -8)
+
+[node name="RightEdge" parent="." instance=ExtResource("5_gev8n")]
+position = Vector2(1228, -8)
+
+[connection signal="point_scored" from="LeftEdge" to="." method="_on_enemy_scored"]
+[connection signal="point_scored" from="RightEdge" to="." method="_on_player_scored"]
